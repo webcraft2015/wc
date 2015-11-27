@@ -45,6 +45,9 @@ if (count($parameters) > 0) {
 	$url = $url . '?' . http_build_query($parameters);
 }
 
+// debug
+$time_start = round(microtime(true) * 1000);
+
 /* initiate curl */
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
@@ -54,8 +57,12 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, $headers_arr);
 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
 /* download */
-$content = curl_exec ($ch);
+$content = curl_exec($ch);
 $content_type = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
+
+// debug
+$time_end = round(microtime(true) * 1000);
+header('X-Time-Elapsed: ' . ($time_end - $time_start) . 'ms');
 
 /* output headers */
 #header('Access-Control-Allow-Origin: *');
@@ -69,4 +76,7 @@ else
 /* output content */
 header('Content-Type: ' . $content_type);
 echo $content;
+
+/* close curl */
+curl_close($ch)
 ?>

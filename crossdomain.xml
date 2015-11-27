@@ -3,6 +3,6 @@
 <cross-domain-policy>
 	<allow-access-from domain="localhost" />
 	<allow-access-from domain="*.clappr.io" />
-	<allow-access-from domain="*.hlsplayer.net" />
-	<allow-access-from domain="*.juhe.ml" />
+    <allow-access-from domain="*.hlsplayer.net" />
+    <allow-access-from domain="*.juhe.ml" />
 </cross-domain-policy>
